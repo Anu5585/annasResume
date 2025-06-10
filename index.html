@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Annas Khalid - Resume</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        .resume-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border-radius: 25px;
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.3);
+            margin: 0 auto 20px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #667eea;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1.5fr 350px;
+            gap: 0;
+            min-height: 600px;
+        }
+
+        .left-column {
+            padding: 40px;
+        }
+
+        .right-column {
+            background: #f8f9ff;
+            padding: 40px 30px;
+            border-left: 1px solid #e0e6ed;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .summary {
+            font-size: 1rem;
+            text-align: justify;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .experience-item:hover, .education-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .job-title {
+            font-weight: 700;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .company {
+            color: #667eea;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .duration {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .job-description ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .job-description li {
+            margin-bottom: 5px;
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .skill-category {
+            margin-bottom: 20px;
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .skill-bar {
+            width: 120px;
+            height: 6px;
+            background: #e0e6ed;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 3px;
+            animation: fillBar 1.5s ease-out;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+            to { width: var(--progress); }
+        }
+
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .language-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .interest-tag {
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid #667eea;
+        }
+
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-column {
+                border-left: none;
+                border-top: 1px solid #e0e6ed;
+            }
+            
+            .resume-container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+
+            .title {
+                font-size: 1rem;
+            }
+
+            .left-column, .right-column {
+                padding: 25px 20px;
+            }
+
+            .section {
+                margin-bottom: 25px;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .download-btn {
+                top: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 25px 15px;
+            }
+
+            .name {
+                font-size: 1.8rem;
+            }
+
+            .contact-info {
+                gap: 12px;
+            }
+
+            .contact-item {
+                font-size: 0.8rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+            }
+
+            .left-column, .right-column {
+                padding: 20px 15px;
+            }
+
+            .experience-item, .education-item {
+                padding: 15px;
+            }
+
+            .skill-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .skill-bar {
+                width: 100%;
+                height: 8px;
+            }
+
+            .languages, .interests {
+                gap: 6px;
+            }
+
+            .language-tag, .interest-tag {
+                font-size: 0.75rem;
+                padding: 6px 10px;
+            }
+
+            .download-btn {
+                position: static;
+                margin: 0 auto 20px;
+                display: block;
+                width: fit-content;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .resume-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .download-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadPDF()">
+        <i class="fas fa-download"></i> Download PDF
+    </button>
+
+    <div class="resume-container">
+        <header class="header">
+            <div class="profile-img">
+                <!-- Replace this src with your actual LinkedIn profile photo URL -->
+                <!-- <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIiByeD0iNzAiIGZpbGw9IiM2NjdlZWEiLz4KPHRleHQgeD0iNzAiIHk9IjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjQ4IiBmb250LXdlaWdodD0iYm9sZCI+QUs8L3RleHQ+Cjwvc3ZnPgo=" alt="Muhammad Annas Khalid" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"> -->
+                <img src="annas.jpg" alt="Muhammad Annas Khalid" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-user" style="display: none;"></i>
+            </div>
+            <h1 class="name">Muhammad Annas Khalid</h1>
+            <p class="title">Full Stack Web Developer | MERN Stack | NextJs | Tailwind CSS | React | JavaScript | Node.js</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span><a href="annaskhalid794@gmail.com">annaskhalid794@gmail.com</a></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>0342-0239984</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Islamabad, Pakistan</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span><a href="https://www.linkedin.com/in/muhammad-annas-khalid/">Muhammad Annas Khalid</a></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="left-column">
+                <section class="section">
+                    <h2 class="section-title">Professional Summary</h2>
+                    <p class="summary">
+                        Highly skilled and detail-oriented Full Stack Web Developer with expertise in modern web technologies including Java, JavaScript, Node.js, Express.js, React, and MySQL. Passionate about creating efficient, user-friendly solutions and staying current with the latest industry trends. Experienced in both front-end and back-end development with a strong foundation in algorithm design and problem-solving.
+                    </p>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Professional Experience</h2>
+                    <div class="experience-item">
+                        <div class="job-title">Freelance Web Developer & Virtual Assistant</div>
+                        <div class="company">Freelancer.com</div>
+                        <div class="duration">August 2022 - Present (2+ years)</div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Developed and maintained dynamic, responsive web applications using MERN stack</li>
+                                <li>Provided virtual assistance services including account management and data entry</li>
+                                <li>Collaborated with clients to deliver custom web solutions meeting specific requirements</li>
+                                <li>Utilized MS Office Suite for documentation, analysis, and client communication</li>
+                                <li>Managed multiple projects simultaneously while maintaining high quality standards</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-item">
+                        <div class="job-title">Bachelor of Science in Computer Science</div>
+                        <div class="company">Shaheed Zulfikar Ali Bhutto Institute of Science and Technology (SZABIST)</div>
+                        <div class="duration">2022 - 2026 (Expected)</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="job-title">F.Sc (Pre-Engineering)</div>
+                        <div class="company">Sir Syed Science College, Rawalpindi</div>
+                        <div class="duration">2018 - 2020</div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Key Courses & Certifications</h2>
+                    <div class="job-description">
+                        <ul>
+                            <li>Web Developer Certification (HTML, CSS, JavaScript)</li>
+                            <li>Data Structures and Algorithms</li>
+                            <li>Database Management Systems</li>
+                            <li>Object-Oriented Programming</li>
+                            <li>Software Engineering</li>
+                            <li>Operating Systems</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <div class="right-column">
+                <section class="section">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Programming Languages</h3>
+                            <div class="skill-item">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Java</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">C++</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 75%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Web Technologies</h3>
+                            <div class="skill-item">
+                                <span class="skill-name">HTML/CSS</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 95%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Node.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Express.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">React</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 80%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Database & Tools</h3>
+                            <div class="skill-item">
+                                <span class="skill-name">MySQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">MS Office</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="--progress: 90%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Languages</h2>
+                    <div class="languages">
+                        <span class="language-tag">English</span>
+                        <span class="language-tag">Urdu</span>
+                        <span class="language-tag">Punjabi</span>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Interests & Activities</h2>
+                    <div class="interests">
+                        <span class="interest-tag">Coding Competitions</span>
+                        <span class="interest-tag">Open Source</span>
+                        <span class="interest-tag">Tech Reading</span>
+                        <span class="interest-tag">Team Sports</span>
+                        <span class="interest-tag">Event Organization</span>
+                        <span class="interest-tag">Outdoor Adventures</span>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">Core Strengths</h2>
+                    <div class="job-description">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #667eea; margin-right: 8px;"></i>Full-Stack Development</li>
+                            <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #667eea; margin-right: 8px;"></i>Problem Solving</li>
+                            <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #667eea; margin-right: 8px;"></i>Team Collaboration</li>
+                            <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #667eea; margin-right: 8px;"></i>Quick Adaptation</li>
+                            <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #667eea; margin-right: 8px;"></i>Client Communication</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = '#';
+            link.download = 'Muhammad_Annas_Khalid_Resume.pdf';
+            
+            // Show a message to the user
+            alert('To download as PDF:\n\n1. Press Ctrl+P (or Cmd+P on Mac)\n2. Select "Save as PDF" as destination\n3. Click Save\n\nAlternatively, use your browser\'s print function and choose "Save as PDF"');
+            
+            // Trigger print dialog
+            window.print();
+        }
+
+        // Replace this function with your actual LinkedIn photo URL
+        function loadProfileImage() {
+            const img = document.querySelector('.profile-img img');
+            const fallback = document.querySelector('.profile-img i');
+            
+            // Add your LinkedIn profile image URL here
+            const linkedinPhotoUrl = 'YOUR_LINKEDIN_PHOTO_URL_HERE';
+            
+            if (linkedinPhotoUrl && linkedinPhotoUrl !== 'YOUR_LINKEDIN_PHOTO_URL_HERE') {
+                img.src = linkedinPhotoUrl;
+                img.style.display = 'block';
+                fallback.style.display = 'none';
+            }
+        }
+
+        // Call the function when page loads
+        window.addEventListener('load', loadProfileImage);
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Add hover effects to skill bars
+        document.querySelectorAll('.skill-progress').forEach((bar, index) => {
+            setTimeout(() => {
+                bar.style.width = bar.style.getPropertyValue('--progress');
+            }, index * 100);
+        });
+    </script>
+</body>
+</html>
