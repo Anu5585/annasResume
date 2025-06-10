@@ -668,24 +668,22 @@
 
     <script>
         function downloadPDF() {
-            // Create a temporary link element
+          
             const link = document.createElement('a');
             link.href = '#';
             link.download = 'Muhammad_Annas_Khalid_Resume.pdf';
             
-            // Show a message to the user
+          
             alert('To download as PDF:\n\n1. Press Ctrl+P (or Cmd+P on Mac)\n2. Select "Save as PDF" as destination\n3. Click Save\n\nAlternatively, use your browser\'s print function and choose "Save as PDF"');
             
-            // Trigger print dialog
+     
             window.print();
         }
 
-        // Replace this function with your actual LinkedIn photo URL
         function loadProfileImage() {
             const img = document.querySelector('.profile-img img');
             const fallback = document.querySelector('.profile-img i');
             
-            // Add your LinkedIn profile image URL here
             const linkedinPhotoUrl = 'YOUR_LINKEDIN_PHOTO_URL_HERE';
             
             if (linkedinPhotoUrl && linkedinPhotoUrl !== 'YOUR_LINKEDIN_PHOTO_URL_HERE') {
@@ -695,7 +693,7 @@
             }
         }
 
-        // Call the function when page loads
+
         window.addEventListener('load', loadProfileImage);
         const observerOptions = {
             threshold: 0.1,
@@ -711,7 +709,7 @@
             });
         }, observerOptions);
 
-        // Observe all sections
+
         document.querySelectorAll('.section').forEach(section => {
             section.style.opacity = '0';
             section.style.transform = 'translateY(20px)';
@@ -719,7 +717,6 @@
             observer.observe(section);
         });
 
-        // Add hover effects to skill bars
         document.querySelectorAll('.skill-progress').forEach((bar, index) => {
             setTimeout(() => {
                 bar.style.width = bar.style.getPropertyValue('--progress');
