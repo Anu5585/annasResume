@@ -24,14 +24,13 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: #e8ecf2;
+    background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     line-height: 1.7;
     min-height: 100vh;
     overflow-x: hidden;
-    padding: 40px 16px;
   }
 
   .page {
@@ -39,13 +38,7 @@
     z-index: 1;
     max-width: 960px;
     margin: 0 auto;
-    padding: 52px 52px 52px;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow:
-      0 2px 4px rgba(0,0,0,0.04),
-      0 8px 24px rgba(0,0,0,0.08),
-      0 24px 56px rgba(0,0,0,0.06);
+    padding: 48px 24px 80px;
   }
 
   /* ─── Header ─── */
@@ -515,13 +508,12 @@
 
   /* ─── Footer ─── */
   .footer {
-    margin-top: 36px;
-    padding-top: 20px;
+    margin-top: 60px;
+    padding-top: 24px;
     border-top: none;
     text-align: center;
     font-family: 'DM Mono', monospace;
     font-size: 11px;
-    font-weight: 400;
     color: var(--text);
     letter-spacing: 1px;
   }
@@ -553,84 +545,9 @@
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
   @media print {
-    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
-    html, body {
-      background: #fff !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-
-    .page {
-      max-width: 100% !important;
-      margin: 0 !important;
-      padding: 18mm 18mm 10mm !important;
-      box-shadow: none !important;
-      border-radius: 0 !important;
-    }
-
     .print-btn, .popup-overlay { display: none !important; }
-
-    .section {
-      opacity: 1 !important;
-      transform: none !important;
-      animation: none !important;
-      margin-bottom: 20px !important;
-    }
-
-    .header {
-      opacity: 1 !important;
-      transform: none !important;
-      animation: none !important;
-      margin-bottom: 24px !important;
-      padding-bottom: 16px !important;
-    }
-
-    .name-block h1 { font-size: 2rem !important; }
-
-    .section-title { font-size: 1.15rem !important; }
-
-    .summary-text {
-      padding: 14px 18px !important;
-      font-size: 13px !important;
-    }
-
-    .skill-card, .project-card, .exp-card, .edu-card {
-      padding: 14px 18px !important;
-      break-inside: avoid;
-      page-break-inside: avoid;
-    }
-
-    .project-card, .exp-card { margin-bottom: 10px !important; }
-
-    .skills-grid { gap: 10px !important; }
-    .projects-list { gap: 10px !important; }
-    .exp-list { gap: 12px !important; }
-    .edu-list { gap: 10px !important; }
-
-    .bottom-grid { gap: 14px !important; }
-
-    .section-header { margin-bottom: 12px !important; }
-
-    .footer {
-      margin-top: 16px !important;
-      padding-top: 10px !important;
-      border-top: 1px solid #dde2ec !important;
-      position: running(footer);
-      text-align: center;
-    }
-
-    /* Keep footer at bottom of last page, not floating in center */
-    @page {
-      margin: 0;
-      size: A4;
-    }
-
-    /* Prevent orphan footer on blank page */
-    .bottom-grid {
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
+    .section { opacity: 1; transform: none; animation: none; }
+    .header { opacity: 1; transform: none; animation: none; }
   }
 
   @media (max-width: 640px) {
@@ -709,6 +626,7 @@
   <section class="section" id="s-summary">
     <div class="section-header">
       <h2 class="section-title">Professional Summary</h2>
+      <div class="section-line"></div>
     </div>
     <p class="summary-text">
       Full Stack Web Developer with hands-on experience in the MERN stack, Laravel, and Python. Skilled in building scalable, responsive, and user-friendly web applications using modern technologies. Passionate about problem-solving, clean code, and continuous learning.
@@ -927,14 +845,10 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    Muhammad Annas Khalid &nbsp;·&nbsp; Full Stack Web Developer &nbsp;·&nbsp; Islamabad, Pakistan
+    <span>Muhammad Annas Khalid</span> &nbsp;·&nbsp; Full Stack Web Developer &nbsp;·&nbsp; Islamabad, Pakistan
   </footer>
 
 </div>
-
-<!-- <button class="print-btn" onclick="window.print()">
-  🖨 Print / Save PDF
-</button> -->
 
 <script>
   function toggleTitle() {
