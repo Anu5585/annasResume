@@ -46,7 +46,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 32px;
-    align-items: end;
+    align-items: start;
     padding-bottom: 40px;
     border-bottom: 2px solid var(--border);
     margin-bottom: 56px;
@@ -72,28 +72,97 @@
     align-items: center;
     gap: 8px;
     margin-top: 12px;
-    padding: 6px 14px;
+    padding: 6px 14px 6px 10px;
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 4px;
     font-family: 'DM Mono', monospace;
     font-size: 12px;
-    color: var(--accent2);
+    color: var(--text);
     letter-spacing: 0.5px;
+    cursor: pointer;
+    user-select: none;
     transition: background 0.2s, border-color 0.2s;
   }
   .title-tag:hover { background: rgba(26,111,212,0.06); border-color: var(--accent); }
-  .title-tag::before { content: '>'; color: var(--accent); font-weight: 700; margin-right: 2px; }
+
+  .title-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; height: 18px;
+    font-size: 10px;
+    color: var(--accent);
+    font-weight: 700;
+    transition: transform 0.3s ease;
+  }
+  .title-tag.open .title-chevron { transform: rotate(90deg); }
+
+  .title-detail {
+    display: none;
+    overflow: hidden;
+  }
+  .title-detail.open {
+    display: block;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .title-detail-inner {
+    margin-top: 10px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .title-detail-inner ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .title-detail-inner ul li {
+    display: flex;
+    gap: 8px;
+    color: var(--light);
+  }
+
+  .title-detail-inner ul li::before {
+    content: '▸';
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .detail-heading {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 4px;
+  }
 
   /* ─── Contact ─── */
-  .contact-block { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  .contact-block { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 
   .contact-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-size: 13px;
-    color: var(--light);
+    color: var(--text);
   }
 
   .contact-item .icon {
@@ -102,16 +171,17 @@
     border: 1px solid var(--border);
     border-radius: 7px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 13px;
-    color: var(--accent);
+    font-size: 14px;
+    color: var(--text);
     flex-shrink: 0;
     transition: background 0.2s, border-color 0.2s, transform 0.2s;
   }
-  .contact-item:hover .icon { background: var(--accent); color: #fff; border-color: var(--accent); transform: scale(1.12); }
-  .contact-item a { color: var(--light); text-decoration: none; transition: color 0.2s; }
+  .contact-item:hover .icon { background: var(--text); color: #fff; border-color: var(--text); transform: scale(1.12); }
+  .contact-item a { color: var(--text); text-decoration: none; transition: color 0.2s; font-weight: 500; }
   .contact-item a:hover { color: var(--accent); }
+  .contact-item span { color: var(--text); font-weight: 500; }
 
-  .phone-trigger { cursor: pointer; color: var(--light); transition: color 0.2s; user-select: none; }
+  .phone-trigger { cursor: pointer; color: var(--text); font-weight: 500; transition: color 0.2s; user-select: none; }
   .phone-trigger:hover { color: var(--accent); }
 
   /* ─── Phone Popup ─── */
@@ -447,7 +517,7 @@
     color: var(--muted);
     letter-spacing: 1px;
   }
-  .footer span { color: var(--accent); font-weight: 600; }
+  .footer span { color: var(--text); font-weight: 600; }
 
   /* ─── Print button ─── */
   .print-btn {
@@ -518,7 +588,23 @@
   <header class="header">
     <div class="name-block">
       <h1>Muhammad <span>Annas</span> Khalid</h1>
-      <div class="title-tag">Full Stack Web Developer &nbsp;|&nbsp; MERN · Python · Laravel</div>
+      <div class="title-tag" id="titleTag" onclick="toggleTitle()">
+        <span class="title-chevron" id="titleChevron">▶</span>
+        Full Stack Web Developer &nbsp;|&nbsp; MERN · Python · Laravel
+      </div>
+      <div class="title-detail" id="titleDetail">
+        <div class="title-detail-inner">
+          <div class="detail-heading">Specializations</div>
+          <ul>
+            <li><strong>MERN Stack</strong> — MongoDB, Express.js, React.js, Node.js</li>
+            <li><strong>Python</strong> — Backend scripting, automation &amp; data handling</li>
+            <li><strong>Laravel (PHP)</strong> — MVC architecture, REST APIs, authentication</li>
+            <li><strong>Frontend</strong> — Next.js, Tailwind CSS, responsive UI design</li>
+            <li><strong>Databases</strong> — MySQL &amp; MongoDB schema design &amp; integration</li>
+            <li><strong>Tools</strong> — Git, GitHub, REST APIs, Axios</li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="contact-block">
       <div class="contact-item">
@@ -769,6 +855,20 @@
 </button>
 
 <script>
+  function toggleTitle() {
+    const tag = document.getElementById('titleTag');
+    const detail = document.getElementById('titleDetail');
+    const chevron = document.getElementById('titleChevron');
+    const isOpen = detail.classList.contains('open');
+    if (isOpen) {
+      detail.classList.remove('open');
+      tag.classList.remove('open');
+    } else {
+      detail.classList.add('open');
+      tag.classList.add('open');
+    }
+  }
+
   function closePopup(e) {
     if (e.target === document.getElementById('phonePopup')) {
       document.getElementById('phonePopup').classList.remove('active');
